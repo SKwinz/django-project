@@ -4,8 +4,27 @@ from django.shortcuts import render
 from django.http import Http404
 from django.shortcuts import get_object_or_404, render
 
-from .models import Question
+from django.http import JsonResponse
+from .models import Question, Choice, Project, Employee
 
+def get_questions(request):
+    data = list(Question.objects.values())
+    return JsonResponse(data, safe=False)
+
+
+def get_choices(request):
+    data = list(Choice.objects.values())
+    return JsonResponse(data, safe=False)
+
+
+def get_projects(request):
+    data = list(Project.objects.values())
+    return JsonResponse(data, safe=False)
+
+
+def get_employees(request):
+    data = list(Employee.objects.values())
+    return JsonResponse(data, safe=False)
 
 def index(request):
     latest_question_list = Question.objects.order_by('-pub_date')[:5]
