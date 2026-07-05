@@ -12,4 +12,9 @@ urlpatterns = [
     path('choices/', views.get_choices),
     path('projects/', views.get_projects),
     path('employees/', views.get_employees),
+    path('create-employee/', views.create_employee),
+    path('create-project/', views.create_project),
+    path('search-employee/', views.search_employee),
+    path('create-comment/', views.create_comment),
+    path('comments/', views.comments_page),
 ]

@@ -14,7 +14,12 @@ class Question(models.Model):
     def was_published_recently(self):
         return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
 
+class IdempotencyKey(models.Model):
+    key = models.CharField(max_length=255, unique=True)
+    created_at = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return self.key
 
 class Choice(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
@@ -51,3 +56,10 @@ class Employee(models.Model):
 
     def __str__(self):
         return self.name
+    
+class Comment(models.Model):
+    username = models.CharField(max_length=100)
+    message = models.TextField()
+
+    def __str__(self):
+        return self.username

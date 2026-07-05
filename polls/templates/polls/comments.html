@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Comments Page</title>
+</head>
+<body>
+
+<h2>Comments</h2>
+
+{% for comment in comments %} <div style="margin-bottom: 10px;"> <strong>{{ comment.username }}</strong><br> <p>{{ comment.message }}</p> </div>
+{% endfor %}
+
+</body>
+</html>
