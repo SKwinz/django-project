@@ -31,6 +31,9 @@ DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://*.up.railway.app",
+]
 
 # Application definition
 
@@ -82,7 +85,7 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 DATABASES = {
     "default": dj_database_url.config(
         default=os.getenv(
-            "LOCAL_DATABASE_URL",
+            "DATABASE_URL",
             "postgresql://samarth:Samarth@2006@127.0.0.1:5432/mydatabase",
         )
     )
@@ -126,3 +129,5 @@ USE_TZ = True
 STATIC_URL = "static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
