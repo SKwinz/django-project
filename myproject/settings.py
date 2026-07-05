@@ -47,6 +47,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -80,7 +81,10 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 
 DATABASES = {
     "default": dj_database_url.config(
-        default=os.getenv("DATABASE_URL")
+        default=os.getenv(
+            "LOCAL_DATABASE_URL",
+            "postgresql://samarth:Samarth@2006@127.0.0.1:5432/mydatabase",
+        )
     )
 }
 
@@ -121,3 +125,4 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
