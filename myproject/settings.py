@@ -34,11 +34,13 @@ ALLOWED_HOSTS = ["*"]
 CSRF_TRUSTED_ORIGINS = [
     "https://*.up.railway.app",
 ]
+CORS_ALLOW_ALL_ORIGINS = True
 
 # Application definition
 
 INSTALLED_APPS = [
     'polls.apps.PollsConfig',
+    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -49,6 +51,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

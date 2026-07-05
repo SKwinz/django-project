@@ -59,7 +59,6 @@ def get_questions(request):
     return Response(data)
 
 @api_view(['POST'])
-@permission_classes([IsAuthenticated])
 @ratelimit(key='ip', rate='10/m', method='POST', block=True)
 def create_employee(request):
     name = request.data.get('name')
@@ -157,6 +156,8 @@ def results(request, question_id):
 def vote(request, question_id):
     return HttpResponse(f"You're voting on question {question_id}.")
 
+@api_view(["GET"])
 def comments_page(request):
-    comments = Comment.objects.all()
-    return render(request, 'polls/comments.html', {'comments': comments})
+    comments = list(Comment.objects.values())
+
+    return Response(comments)
